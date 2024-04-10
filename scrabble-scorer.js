@@ -12,16 +12,16 @@ const oldPointStructure = {
   10: ['Q', 'Z']
 };
 
-function oldScrabbleScorer(word) {
-	word = word.toUpperCase();
+function oldScrabbleScorer(newWord) {
+	newWord = newWord.toUpperCase();
 	let letterPoints = "";
  
-	for (let i = 0; i < word.length; i++) {
+	for (let i = 0; i < newWord.length; i++) {
  
 	  for (const pointValue in oldPointStructure) {
  
-		 if (oldPointStructure[pointValue].includes(word[i])) {
-			letterPoints += `Points for '${word[i]}': ${pointValue}\n`
+		 if (oldPointStructure[pointValue].includes(newWord[i])) {
+			letterPoints += `Points for '${newWord[i]}': ${pointValue}\n`
 		 }
  
 	  }
@@ -29,30 +29,105 @@ function oldScrabbleScorer(word) {
 	return letterPoints;
  }
 
-// your job is to finish writing these functions and variables that we've named //
-// don't change the names or your program won't work as expected. //
+ 
+ // your job is to finish writing these functions and variables that we've named //
+ // don't change the names or your program won't work as expected. //
+ 
+ function initialPrompt() {
+    console.log("Let's play some scrabble!");
+    let word = input.question("Enter a word to score: ");
+    // console.log(word);
+    // console.log(simpleScorer(word));
+    return word;
+   };
+   // let newWord = initialPrompt();
+   
+   // let oldScrabbleScorerPointValue = oldScrabbleScorer(newWord);
 
-function initialPrompt() {
-   console.log("Let's play some scrabble! Enter a word:");
+function simpleScorer(newWord){
+   console.log(newWord);
+   newWord = newWord.toUpperCase();
+   pointValue = newWord.length
+   return pointValue;
 };
 
-let simpleScorer;
+// let simpleScorerPointValue = simpleScorer(newWord);
 
-let vowelBonusScorer;
+
+
+let simpleScorerObject = {
+   name: "Simple Score",
+   description: "Each letter is worth 1 point.",
+   scoreFunction: simpleScorer
+};
 
 let scrabbleScorer;
 
-const scoringAlgorithms = [];
+function vowelBonusScorer(newWord){
+   newWord = newWord.toUpperCase();
+   let pointValue = 0;
+   let vowels = ["A","E","I","O","U"];
+   for (i = 0; i < newWord.length; i++)
+   if (vowels.includes(newWord[i])){
+      pointValue += 3;
+   }  else {
+      pointValue += 1;
+   }
+   return pointValue;
+};
 
-function scorerPrompt() {}
+// let vowelBonusScorerPointValue = vowelBonusScorer(newWord);
 
-function transform() {};
+let vowelBonusScorerObject = {
+   name: "Bonus Vowels",
+   description: "Vowels are 3 pts, consonants are 1 pt.",
+   scoreFunction: vowelBonusScorer
+};
 
 let newPointStructure;
 
+let scrabbleScorerObject = {
+   name: "Scrabble",
+   description: "The traditional scoring algorithm.",
+   scoreFunction: oldScrabbleScorer
+};
+
+const scoringAlgorithms = [simpleScorerObject, vowelBonusScorerObject, scrabbleScorerObject];
+
+function scorerPrompt() {
+   let num = input.question("Select scoring type: \n0) Simple \n1) Vowel Bonus \n2) Traditional\nEnter 0, 1, or 2: ");
+      // if (num = 0){
+      //    scoringAlgorithms[0].scoreFunction(newWord);
+      //    console.log(`Score for ${newWord} is ${simpleScorerObject.scoreFunction(newWord)}`);
+      // }  else if (num = 1){
+      //    scoringAlgorithms[1].scoreFunction(newWord);
+      //    console.log(`Score for ${newWord} is ${vowelBonusScorerPointValue}`);
+      // }  else if (num = 2){
+      //    scoringAlgorithms[2].scoreFunction(newWord);
+      //    console.log(`Score for ${newWord} is ${oldScrabbleScorerPointValue}`);
+      // }  else {
+      //    console.log("Invalid input.");
+      // }
+      // console.log(scorerPrompt(num))
+      return scoringAlgorithms[Number(num)];
+
+};
+
+// let scoreSelected = scorerPrompt(newWord)
+
+function transform() {};
+
 function runProgram() {
-   initialPrompt();
+   let newWord = initialPrompt();
+   // console.log(newWord);
+   let scoreSelected = scorerPrompt(newWord);
+   console.log(scoreSelected.scoreFunction(newWord));
+   // let vowelBonusScorerPointValue = vowelBonusScorer(newWord);
+   // let simpleScorerPointValue = simpleScorer(newWord);
+
    
+   
+
 }
 
 // Don't write any code below this line //
