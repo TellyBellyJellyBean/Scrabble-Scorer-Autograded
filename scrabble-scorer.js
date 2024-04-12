@@ -53,11 +53,11 @@ let simpleScorerObject = {
    scorerFunction: simpleScorer
 };
 
-let newPointStructure = transform(oldPointStructure);
+let newPointStructure;
 
 function scrabbleScorer(newWord){
    newPointStructure = transform(oldPointStructure);
-   newWord = newWord.toUpperCase();
+   newWord = newWord.toLowerCase();
    let pointValue = 0
 	for (let i = 0; i < newWord.length; i++) {
       
@@ -122,7 +122,6 @@ function runProgram() {
    console.log(newWord);
    let scoreSelected = scorerPrompt(newWord);
    console.log(scoreSelected.scorerFunction(newWord));
-   console.log(newPointStructure);
 }
 
 // Don't write any code below this line //
