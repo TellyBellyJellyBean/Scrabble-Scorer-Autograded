@@ -2,7 +2,7 @@
 
 const input = require("readline-sync");
 
-const oldPointStructure = {
+let oldPointStructure = {
   1: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'],
   2: ['D', 'G'],
   3: ['B', 'C', 'M', 'P'],
@@ -111,7 +111,7 @@ function transform(oldPointStructure) {
    for (let key in oldPointStructure){
       let newPointStructureKeys = oldPointStructure[key];
       for (i = 0; i < newPointStructureKeys.length; i++){
-         newPointStructure[newPointStructureKeys[i]] = Number(key)};
+         newPointStructure[newPointStructureKeys[i].toLowerCase()] = Number(key)};
    }
    return newPointStructure;
 };
@@ -121,7 +121,7 @@ function runProgram() {
    console.log(newWord);
    let scoreSelected = scorerPrompt(newWord);
    console.log(scoreSelected.scorerFunction(newWord));
-   console.log(oldPointStructure);
+   console.log(newPointStructure);
 }
 
 // Don't write any code below this line //
