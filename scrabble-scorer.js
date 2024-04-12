@@ -53,7 +53,7 @@ let simpleScorerObject = {
    scorerFunction: simpleScorer
 };
 
-let newPointStructure;
+let newPointStructure = transform(oldPointStructure);
 
 function scrabbleScorer(newWord){
    newPointStructure = transform(oldPointStructure);
