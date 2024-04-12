@@ -43,7 +43,8 @@ function simpleScorer(newWord){
    console.log(newWord); 
    newWord = newWord.toUpperCase();
    pointValue = newWord.length
-   return `Score for '${newWord}': ${pointValue}`;
+   console.log(`Score for '${newWord}': ${pointValue}`)
+   return pointValue;
 };
 
 let simpleScorerObject = {
