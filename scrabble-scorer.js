@@ -113,14 +113,14 @@ function transform(oldPointStructure) {
       for (i = 0; i < newPointStructureKeys.length; i++){
          newPointStructure[newPointStructureKeys[i]] = Number(key)};
    }
-   return newPointStructure;
+   return newPointStructure.toLowerCase();
 };
 
 function runProgram() {
    let newWord = initialPrompt();
    console.log(newWord);
    let scoreSelected = scorerPrompt(newWord);
-   console.log(scoreSelected.scoreFunction(newWord));
+   console.log(scoreSelected.scorerFunction(newWord));
 }
 
 // Don't write any code below this line //
