@@ -50,25 +50,27 @@ function simpleScorer(newWord){
 let simpleScorerObject = {
    name: "Simple Score",
    description: "Each letter is worth 1 point.",
-   scoreFunction: simpleScorer
+   scorerFunction: simpleScorer
 };
 
-let newPointStructure = transform(oldPointStructure);
 
 function scrabbleScorer(newWord){
    newWord = newWord.toUpperCase();
    let pointValue = 0
 	for (let i = 0; i < newWord.length; i++) {
- 
-	  for (const key in newPointStructure) {
-		 if (key.includes(newWord[i])) {
-          pointValue += newPointStructure[key];
+      
+      for (const key in newPointStructure) {
+         if (key.includes(newWord[i])) {
+            pointValue += newPointStructure[key];
          }      
       }
 	}
-   return `Score for '${newWord}': ${pointValue}`;
-
+   console.log(`Score for '${newWord}': ${pointValue}`)
+   return pointValue;
+   
 };
+
+let newPointStructure = transform(oldPointStructure);
 
 function vowelBonusScorer(newWord){
    newWord = newWord.toUpperCase();
@@ -80,19 +82,20 @@ function vowelBonusScorer(newWord){
    }  else {
       pointValue += 1;
    }
-   return `Score for '${newWord}': ${pointValue}`;
+   console.log(`Score for '${newWord}': ${pointValue}`)
+   return pointValue;
 };
 
 let vowelBonusScorerObject = {
    name: "Bonus Vowels",
    description: "Vowels are 3 pts, consonants are 1 pt.",
-   scoreFunction: vowelBonusScorer
+   scorerFunction: vowelBonusScorer
 };
 
 let scrabbleScorerObject = {
    name: "Scrabble",
    description: "The traditional scoring algorithm.",
-   scoreFunction: scrabbleScorer
+   scorerFunction: scrabbleScorer
 };
 
 const scoringAlgorithms = [simpleScorerObject, vowelBonusScorerObject, scrabbleScorerObject];
@@ -108,8 +111,7 @@ function transform(oldPointStructure) {
    for (let key in oldPointStructure){
       let newPointStructureKeys = oldPointStructure[key];
       for (i = 0; i < newPointStructureKeys.length; i++){
-         newPointStructure[newPointStructureKeys[i]] = key};
-         key = Number(key);
+         newPointStructure[newPointStructureKeys[i]] = Number(key)};
    }
    return newPointStructure;
 };
