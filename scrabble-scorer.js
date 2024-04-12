@@ -53,8 +53,10 @@ let simpleScorerObject = {
    scorerFunction: simpleScorer
 };
 
+let newPointStructure;
 
 function scrabbleScorer(newWord){
+   newPointStructure = transform(oldPointStructure);
    newWord = newWord.toUpperCase();
    let pointValue = 0
 	for (let i = 0; i < newWord.length; i++) {
@@ -70,7 +72,6 @@ function scrabbleScorer(newWord){
    
 };
 
-let newPointStructure = transform(oldPointStructure);
 
 function vowelBonusScorer(newWord){
    newWord = newWord.toUpperCase();
