@@ -67,7 +67,8 @@ function scrabbleScorer(newWord){
          }      
       }
 	}
-   console.log(`Score for '${newWord}': ${pointValue}`)
+   console.log(newPointStructure);
+   // console.log(`Score for '${newWord}': ${pointValue}`)
    return pointValue;
    
 };
@@ -116,6 +117,7 @@ function transform(oldPointStructure) {
    }
    return newPointStructure;
 };
+newPointStructure = transform(oldPointStructure);
 
 function runProgram() {
    let newWord = initialPrompt();
